@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import "./styles.css";
+import { useState } from "react";
 
 function App() {
+  const [value, setValue] = useState(5000);
+
+  let handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <div className="amount">
+        <sup>$</sup>
+        <span className="dollars">{parseFloat(value / 100).toFixed(2)}</span>
+      </div>
+      <input type="range" id="priceRange" min="0" max="10000" step="1" value={value} onChange={handleChange} />
+      <br />
+      <button>Buy Now</button>
     </div>
   );
 }
